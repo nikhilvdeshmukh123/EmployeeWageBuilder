@@ -1,9 +1,9 @@
 package com.bridgelabz;
 /*
  * @author: Nikhil
- * Ability to manage Employee Wage of multiple companies
+ * Ability to manage Employee Wage of multiple companies using Interface approach
  */
-public class EmpWageComputation {
+public class EmpWageComputation implements EmpWageInterface {
 	//Constants
 	public static final int IS_FULL_TIME = 1;
 	public static final int IS_PART_TIME = 2;
@@ -25,7 +25,7 @@ public class EmpWageComputation {
 	}
 
 	//calculating wages for multiple company
-	void empWage() {
+	public void empWage() {
 		for (int i = 0; i < numOfCompanies; i++) {
 			companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
 			System.out.print(companyEmpWageArray[i]);
