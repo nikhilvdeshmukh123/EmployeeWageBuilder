@@ -1,34 +1,34 @@
 package com.bridgelabz;
+
+import java.util.ArrayList;
 /*
  * @author: Nikhil
- * Ability to manage Employee Wage of multiple companies using Interface approach
+ * Refactor to have list of multiple companies to manage Employee Wage
  */
 public class EmpWageComputation implements EmpWageInterface {
 	//Constants
 	public static final int IS_FULL_TIME = 1;
 	public static final int IS_PART_TIME = 2;
- 	//Insatnce variable
-	private int numOfCompanies = 0;
-	//constructor
-	private CompanyEmpWage[] companyEmpWageArray;
-
-	//constructor
+ 	//ArrayList
+	private ArrayList<CompanyEmpWage> companyEmpWageArrayList;
+	//object of constructor
 	public EmpWageComputation() {
-		companyEmpWageArray = new CompanyEmpWage[10];
+		super();
+		companyEmpWageArrayList = new ArrayList<CompanyEmpWage>();
 	}
-
 	//defining method using array
 	public void addCompanyEmpWage(String company, int empRatePerHr, int numOfWorkingDays, int maxHrsPerMonth) {
-		companyEmpWageArray[numOfCompanies] = new CompanyEmpWage(company, empRatePerHr, numOfWorkingDays,
-				maxHrsPerMonth);
-		numOfCompanies++;
+		CompanyEmpWage companywage = new CompanyEmpWage(company, empRatePerHr, numOfWorkingDays,maxHrsPerMonth);
+		companyEmpWageArrayList.add(companywage);
 	}
 
 	//calculating wages for multiple company
 	public void empWage() {
-		for (int i = 0; i < numOfCompanies; i++) {
-			companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
-			System.out.print(companyEmpWageArray[i]);
+		for (int i = 0; i < companyEmpWageArrayList.size(); i++) {
+			CompanyEmpWage companyEmpWage = companyEmpWageArrayList.get(i);
+			
+			int totalEmpWage = this.computeEmpWage(companyEmpWage);
+			System.out.println("Total Employee Wage for Company " + companyEmpWage.company + " is: " + totalEmpWage);
 		}
 	}
 
